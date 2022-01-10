@@ -1,0 +1,136 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Introduction SOLID",
+        "description": "This is a API of creation users",
+        "version": "1.0.0",
+        "contact": {
+            "email":"jorge@gmail.com"
+        }
+    },
+    "paths":{
+        "/users": {
+            "post": {
+                "tags": ["users"],
+                "summary": "Create user",
+                "description": "Add new user to application",
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "username to be created",
+                                    "email": "jorge@gmail.com"
+                                    
+                                }
+
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Createad"
+                    },
+                    "400": {
+                        "description": "User already exist!"
+                    }
+                }
+            },
+            "get":{
+                "tags":["users"],
+                "summary": "List all users",
+                "description":"Listing all users",
+                "responses": {
+                    "200": {
+                        "description":"Success"
+                    },
+                    "400": {
+                        "description": "User not found!"
+                    }
+                }
+            }
+        },
+         "/users/{user_id}": {
+            "get":{
+                "tags": ["users"],
+                "summary": ["Search user specific"],
+                "description":["Search user ID"],
+                "parameters":[
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "Shearch user",
+                        "required": "true"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400":{
+                        "description": "User not exists!"
+                    }
+                }
+            }
+        },
+        "/users/{user_id}/admin": {
+            "patch":{
+                "tags":["users"],
+                "summary": "Make the user an administrato",
+                "description": "Make the user an administrato",
+                "parameters":[
+                    {
+                        "name": "user_id",
+                        "admin": "admin",
+                        "in": "path",
+                        "description": "Shearch user",
+                        "required": "true"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "username to administrato",
+                                    "email": "jorge@gmail.com"
+                                    
+                                }
+
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400":{
+                        "description": "User not exists!"
+                    }
+                }
+            }
+        }
+    }
+    
+
+}
